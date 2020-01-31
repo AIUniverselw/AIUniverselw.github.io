@@ -4,6 +4,156 @@
   
     
     <entry>
+      <title>ICPC寒假刷题NO. 1    算法设计的问题</title>
+      <link href="/2020/01/31/ICPC%E5%AF%92%E5%81%87%E8%AE%AD%E7%BB%83/ICPC%E5%AF%92%E5%81%87%E8%AE%AD%E7%BB%83NO.1/%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1%E7%9A%84%E9%97%AE%E9%A2%98/"/>
+      <url>/2020/01/31/ICPC%E5%AF%92%E5%81%87%E8%AE%AD%E7%BB%83/ICPC%E5%AF%92%E5%81%87%E8%AE%AD%E7%BB%83NO.1/%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1%E7%9A%84%E9%97%AE%E9%A2%98/</url>
+      
+        <content type="html"><![CDATA[        <h2   id="B-Sum-Problem" >          <span class="heading-link">B - Sum Problem</span>        </h2>      <p><img src="/pictures/ACM寒假训练/训练一_题目B.png" alt="题目"><br>求前n项和。最先想到用求和公式<br>$n*(n+1)/2$，于是</p><p><strong>错误代码</strong></p><ul><li>  <figure class="highlight cpp"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> n;</span><br><span class="line"><span class="keyword">while</span>(<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;n) != EOF)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">    ans = n * (<span class="number">1</span> + n) / <span class="number">2</span>;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; ans &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure><strong>错因</strong></li><li>没有考虑到 n * (1 + n) 中，当 n 很大时结果会越界，超过 int 的范围</li></ul><p><strong>正确解法</strong></p><ul><li>从1加到n，循环(但显然不是目的)</li><li>对n的奇偶稍作讨论  <figure class="highlight cpp"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> n;</span><br><span class="line"><span class="keyword">while</span>(<span class="built_in">cin</span> &gt;&gt; n)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span>(n % <span class="number">2</span> == <span class="number">0</span>)</span><br><span class="line">        sum = n / <span class="number">2</span> * (<span class="number">1</span> + n);</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        sum = (<span class="number">1</span> + n) / <span class="number">2</span> * n;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; sum &lt;&lt; <span class="built_in">endl</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>  <strong>还要注意最后输出的要求，要有一个blank line</strong></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> ICPC寒假刷题NO.1 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 算法设计的问题 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>ICPC寒假刷题NO. 1    新东西</title>
+      <link href="/2020/01/31/ICPC%E5%AF%92%E5%81%87%E8%AE%AD%E7%BB%83/ICPC%E5%AF%92%E5%81%87%E8%AE%AD%E7%BB%83NO.1/%E6%96%B0%E4%B8%9C%E8%A5%BF/"/>
+      <url>/2020/01/31/ICPC%E5%AF%92%E5%81%87%E8%AE%AD%E7%BB%83/ICPC%E5%AF%92%E5%81%87%E8%AE%AD%E7%BB%83NO.1/%E6%96%B0%E4%B8%9C%E8%A5%BF/</url>
+      
+        <content type="html"><![CDATA[<ul><li>Y - <span class="external-link"><a   href="https://vjudge.net/contest/353848#problem/Y"  target="_blank" rel="noopener">蟠桃记</a><i class="fa fa-external-link"></i></span><br><img src="/pictures/ACM寒假训练/训练一_题目Y.png" alt="题目"><br>这是<strong>典型的递归问题</strong>。难点在于<strong>怎么得到递归函数的表达式</strong></li></ul>        <h2   id="分析" >          <span class="heading-link">分析</span>        </h2>      <ul><li>要求第一天有多少桃子，而我知道的是第 n 天只剩下 1 个</li><li>所以应该<strong>把第 n 天当做第一天，逆向求解</strong><br>即 $f(1) = 1$</li><li>由已知条件：设第 n 天剩下$f(n)$个，则$f(n - 1) = f(n) / 2 - 1$<br>至此，$f(n)$的表达式得出<br>$f(n) = 2 * (f(n - 1) + 1)$</li></ul>        <h2   id="代码" >          <span class="heading-link">代码</span>        </h2>      <ul><li>  <figure class="highlight cpp"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">f</span><span class="params">(<span class="keyword">int</span> n)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    <span class="keyword">while</span>(<span class="built_in">cin</span> &gt;&gt; n)</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; f(n) &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">f</span><span class="params">(<span class="keyword">int</span> n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(n == <span class="number">1</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">2</span> * (f(n<span class="number">-1</span>) + <span class="number">1</span>);</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> ICPC寒假刷题NO.1 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 递归 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>ICPC寒假刷题NO. 1    踩坑日记</title>
+      <link href="/2020/01/31/ICPC%E5%AF%92%E5%81%87%E8%AE%AD%E7%BB%83/ICPC%E5%AF%92%E5%81%87%E8%AE%AD%E7%BB%83NO.1/%E8%B8%A9%E5%9D%91%E6%97%A5%E8%AE%B0/"/>
+      <url>/2020/01/31/ICPC%E5%AF%92%E5%81%87%E8%AE%AD%E7%BB%83/ICPC%E5%AF%92%E5%81%87%E8%AE%AD%E7%BB%83NO.1/%E8%B8%A9%E5%9D%91%E6%97%A5%E8%AE%B0/</url>
+      
+        <content type="html"><![CDATA[        <h2   id="S-平方和与立方和" >          <span class="heading-link">S - 平方和与立方和</span>        </h2>      <p><img src="/pictures/ACM寒假训练/训练一_题目S.png" alt="题目"><br>题目给定了一段连续的整数，也就是说给定了两个端点为 n, m 的一段区间。题目并不难，但是有一个坑</p><p><strong>错误代码</strong></p><ul><li>  <figure class="highlight c"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> n, m;</span><br><span class="line"><span class="keyword">while</span>(<span class="built_in">cin</span> &gt;&gt; n &gt;&gt; m)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">int</span> sum_odd = <span class="number">0</span>, sum_even = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = n; i &lt;= m; i++)</span><br><span class="line">        <span class="keyword">if</span>(i % <span class="number">2</span> == <span class="number">0</span>)</span><br><span class="line">            sum_even += i * i;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            sum_odd += i * i * i;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; sum_even &lt;&lt; <span class="string">" "</span> &lt;&lt; sum_odd &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure><strong>错因</strong></li><li>人家只说了端点是 n, m ，又没说哪一个是左端点，哪一个是右端点</li></ul><p><strong>正确解法</strong></p><ul><li>对 n, m 的大小做一个判断，确保 n 是左端点，m 是右端点  <figure class="highlight c"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> n, m;</span><br><span class="line"><span class="keyword">while</span>(<span class="built_in">cin</span> &gt;&gt; n &gt;&gt; m)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span>(n &gt; m)</span><br><span class="line">        swap(n, m);</span><br><span class="line">    <span class="keyword">int</span> sum_odd = <span class="number">0</span>, sum_even = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = n; i &lt;= m; i++)</span><br><span class="line">        <span class="keyword">if</span>(i % <span class="number">2</span> == <span class="number">0</span>)</span><br><span class="line">            sum_even += i * i;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            sum_odd += i * i * i;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; sum_even &lt;&lt; <span class="string">" "</span> &lt;&lt; sum_odd &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> 踩坑日记 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 踩坑 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>ICPC寒假刷题NO. 1    代码写法的问题</title>
+      <link href="/2020/01/31/ICPC%E5%AF%92%E5%81%87%E8%AE%AD%E7%BB%83/ICPC%E5%AF%92%E5%81%87%E8%AE%AD%E7%BB%83NO.1/%E4%BB%A3%E7%A0%81%E5%86%99%E6%B3%95%E7%9A%84%E9%97%AE%E9%A2%98/"/>
+      <url>/2020/01/31/ICPC%E5%AF%92%E5%81%87%E8%AE%AD%E7%BB%83/ICPC%E5%AF%92%E5%81%87%E8%AE%AD%E7%BB%83NO.1/%E4%BB%A3%E7%A0%81%E5%86%99%E6%B3%95%E7%9A%84%E9%97%AE%E9%A2%98/</url>
+      
+        <content type="html"><![CDATA[        <h2   id="F-A-B-for-Input-Output-Practice-III" >          <span class="heading-link">F - A+B for Input-Output Practice (III)</span>        </h2>      <p><img src="/pictures/ACM寒假训练/训练一_题目F.png" alt="题目"><br>题目很简单，但是出错的地方值得记录</p><p><strong>错误代码</strong></p><ul><li>  <figure class="highlight c"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span>(<span class="number">1</span>)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">int</span> a, b;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; a &gt;&gt; b;</span><br><span class="line">    <span class="keyword">if</span>(a == b == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">long</span> sum = <span class="number">0</span>;</span><br><span class="line">    sum = a + b;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; sum &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure><strong>错因</strong></li><li><code>a == b == 0</code> 当 a = b 时，a == b 的值是 1 ，!= 0，不会进 if<br>  当 a != b 时，a == b 的值是 0 ，反而会进 if<br><strong>正确解法</strong></li><li>用另一种表现形式  <figure class="highlight c"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(!a &amp;&amp; !b)</span><br></pre></td></tr></table></div></figure></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> ICPC寒假刷题NO.1 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 代码写法的问题 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Ubuntu的一些操作</title>
+      <link href="/2020/01/27/Ubuntu%E6%93%8D%E4%BD%9C/"/>
+      <url>/2020/01/27/Ubuntu%E6%93%8D%E4%BD%9C/</url>
+      
+        <content type="html"><![CDATA[        <h2   id="卸载软件" >          <span class="heading-link">卸载软件</span>        </h2>      <p><strong>1.卸载软件：<br><code>sudo apt-get remove 软件名</code><br>2.卸载软件并删除依赖：<br><code>sudo apt-get remove --auto-remove 软件名</code><br>3.清除软件：<br><code>sudo apt-get purge 软件名</code><br>4.清除软件及依赖：<br><code>sudo apt-get purge --auto-remove 软件名</code></strong></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 教程 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 教程 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>ICPC寒假刷题NO. 1    小技巧</title>
+      <link href="/2020/01/27/ICPC%E5%AF%92%E5%81%87%E8%AE%AD%E7%BB%83/ICPC%E5%AF%92%E5%81%87%E8%AE%AD%E7%BB%83NO.1/%E5%B0%8F%E6%8A%80%E5%B7%A7/"/>
+      <url>/2020/01/27/ICPC%E5%AF%92%E5%81%87%E8%AE%AD%E7%BB%83/ICPC%E5%AF%92%E5%81%87%E8%AE%AD%E7%BB%83NO.1/%E5%B0%8F%E6%8A%80%E5%B7%A7/</url>
+      
+        <content type="html"><![CDATA[<ul><li><p><span class="external-link"><a   href="https://vjudge.net/contest/353848#problem/A"  target="_blank" rel="noopener">A - A + B Problem</a><i class="fa fa-external-link"></i></span><br>ACM的题目常常会有<strong>多组数据</strong>，最后结束会以<span class="external-link"><a   href="https://baike.baidu.com/item/EOF/1017800?fr=aladdin"  target="_blank" rel="noopener">EOF</a><i class="fa fa-external-link"></i></span>结束。这道题自己的<strong>问题在于不知道怎么用cpp去读EOF</strong></p><p>  如果用C语言，可以这么写：</p>  <figure class="highlight cpp"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span>(<span class="built_in">scanf</span>(<span class="string">"%d %d"</span>, &amp;a, &amp;b) != EOF)</span><br></pre></td></tr></table></div></figure><p>  <strong>而cpp这样写即可</strong></p>  <figure class="highlight cpp"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span>(<span class="built_in">cin</span> &gt;&gt; a &gt;&gt; b)</span><br></pre></td></tr></table></div></figure></li></ul><ul><li><p><span class="external-link"><a   href="https://vjudge.net/contest/353848#problem/N"  target="_blank" rel="noopener">N - 计算球体积</a><i class="fa fa-external-link"></i></span><br>  对于π的计算</p>  <figure class="highlight c"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">double</span> PI = <span class="built_in">acos</span>(<span class="number">-1.0</span>);</span><br></pre></td></tr></table></div></figure><p>  这是<strong>非常标准并且正确</strong>的<br>  但是在这道题中，题目已经给出了π的值，这种情况下应该用题目给的值</p></li><li><p>怎么用cpp实现对小数点位数的控制<br>  一些题目会对保留几位小数有要求。<br>  以保留两位为例</p><p>  c语言</p>  <figure class="highlight cpp"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">printf</span>(<span class="string">"%.2lf"</span>, a);</span><br></pre></td></tr></table></div></figure><p>  cpp<br>  首先要</p>  <figure class="highlight cpp"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iomanip&gt;</span></span></span><br></pre></td></tr></table></div></figure><p>  然后</p>  <figure class="highlight cpp"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cout</span> &lt;&lt; fixed &lt;&lt; setprecision(<span class="number">2</span>) &lt;&lt; distance &lt;&lt; <span class="built_in">endl</span>;</span><br></pre></td></tr></table></div></figure><p>  <strong>fixed表示位数不够会补0<br>  setprecision(位数)</strong></p></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> ICPC寒假刷题NO.1 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 小技巧 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Hello World</title>
       <link href="/2020/01/21/hello-world/"/>
       <url>/2020/01/21/hello-world/</url>
