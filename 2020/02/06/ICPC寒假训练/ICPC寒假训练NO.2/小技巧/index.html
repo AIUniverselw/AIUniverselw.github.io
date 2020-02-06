@@ -1,0 +1,88 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="keywords" content="Wei Li, LiWei's Blog"><meta name="description" content=""><title>ICPC寒假刷题NO. 2    小技巧</title><link rel="icon" href="/picture/2.ico?v=1.6.0" type="image/png" sizes="16x16"><link rel="icon" href="/picture/2.ico?v=1.6.0" type="image/png" sizes="32x32"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" type="text/css"><link rel="stylesheet" href="/css/index.css?v=1.6.0"><script>var Stun = window.Stun || {};
+var CONFIG = {
+  root: '/',
+  algolia: undefined,
+  fontawesome: {"prefix":"fa"},
+  sidebar: {"offsetTop":"30px","tocMaxDepth":4},
+  header: {"scrollDownIcon":true},
+  post_widget: {"end_text":true},
+  night_mode: {"enable":true},
+  back2top: {"enable":true},
+  codeblock: {"style":"default","highlight":"ocean","word_wrap":false},
+  reward: false,
+  fancybox: false,
+  zoom_image: {"enable":true,"mask_color":"rgba(0,0,0,0.6)"},
+  gallery_waterfall: {"enable":true,"col_width":"220px","gap_x":"10px","gap_y":"10px"},
+  lazyload: undefined,
+  pjax: undefined,
+  external_link: {"icon":{"enable":true,"name":"external-link"}},
+  shortcuts: {"switch_post":false},
+  prompt: {"copy_success":"复制成功","copy_error":"复制失败","creative_commons":"知识共享","copy_button":"复制代码"}
+};
+
+window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 4.2.0"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner"><nav class="header-nav"><div class="header-nav-inner"><div class="header-nav-btn fa fa-bars"></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__a " href="/"><i class="fa fa-home"></i>首页</a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__a " href="/archives/"><i class="fa fa-archive"></i>归档</a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__a " href="/categories/"><i class="fa fa-list"></i>分类</a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__a " href="/tags/"><i class="fa fa-tags"></i>标签</a></div></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav><div class="header-info"><div class="header-info-inner"><div class="header-info-title">LiWei's Blog</div><div class="header-info-subtitle"></div></div><div class="header-info-scrolldown"><i class="fa fa-angle-down header-info-scrolldown__icon"></i></div></div></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content"><div id="is-post"></div><div class="post"><header class="post-header"><h1 class="post-header-title">ICPC寒假刷题NO. 2    小技巧</h1><div class="post-header-meta"><span class="post-header-meta-create"><i class="fa fa-calendar-o"></i><span>发表于 </span><span>2020-02-06</span></span><span class="post-header-meta-update"><i class="fa fa-calendar-check-o"></i><span>更新于 </span><span>2020-02-06</span></span><span class="post-header-meta-word-count"><i class="fa fa-file-word-o"></i><span>字数统计 </span><span>443</span></span><span class="post-header-meta-reading-count"><i class="fa fa-eye"></i><span>阅读次数 </span><span id="busuanzi_value_page_pv"></span></span></div></header><div class="post-body"><ul>
+<li><p><span class="external-link"><a   href="http://acm.hdu.edu.cn/showproblem.php?pid=1228"  target="_blank" rel="noopener">HDU1228 - A + B</a><i class="fa fa-external-link"></i></span><br>这道题是一道模拟题，问题的关键在于怎么读入数。如果按部就班的一个一个去找(代表数字的)字符串，过程会非常复杂，这时候就需要改变思路，<strong>改变读入的方式</strong><br>在这之前，可以先<strong>用一个map把数字和字符串做一个映射</strong>。</p>
+  <figure class="highlight cpp"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">map</span>&lt;<span class="built_in">string</span>, <span class="keyword">int</span>&gt; m;</span><br><span class="line">m[<span class="string">"zero"</span>] = <span class="number">0</span>;</span><br><span class="line">m[<span class="string">"one"</span>] = <span class="number">1</span>;</span><br><span class="line">m[<span class="string">"two"</span>] = <span class="number">2</span>;</span><br><span class="line">m[<span class="string">"three"</span>] = <span class="number">3</span>;</span><br><span class="line">m[<span class="string">"four"</span>] = <span class="number">4</span>;</span><br><span class="line">m[<span class="string">"five"</span>] = <span class="number">5</span>;</span><br><span class="line">m[<span class="string">"six"</span>] = <span class="number">6</span>;</span><br><span class="line">m[<span class="string">"seven"</span>] = <span class="number">7</span>;</span><br><span class="line">m[<span class="string">"eight"</span>] = <span class="number">8</span>;</span><br><span class="line">m[<span class="string">"nine"</span>] = <span class="number">9</span>;</span><br></pre></td></tr></table></div></figure>
+<p>  之后<strong>改变读入方式</strong></p>
+  <figure class="highlight cpp"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">string</span> s;</span><br><span class="line"><span class="keyword">int</span> a = <span class="number">0</span>, b = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">while</span>(<span class="built_in">cin</span> &gt;&gt; s &amp;&amp; s != <span class="string">"+"</span>)</span><br><span class="line">    a = a * <span class="number">10</span> + m[s];</span><br><span class="line"><span class="keyword">while</span>(<span class="built_in">cin</span> &gt;&gt; s &amp;&amp; s != <span class="string">"="</span>)</span><br><span class="line">    b = b * <span class="number">10</span> + m[s];</span><br></pre></td></tr></table></div></figure>
+<p>  <strong>一个一个的读入字符串，而不是把整个式子一次性读入</strong></p>
+</li>
+<li><p><span class="external-link"><a   href="http://acm.hdu.edu.cn/showproblem.php?pid=1262"  target="_blank" rel="noopener">HDU1262 - 寻找素数对</a><i class="fa fa-external-link"></i></span><br>  首先<strong>判断一个数是不是素数</strong>的函数应该是非常熟悉的</p>
+  <figure class="highlight cpp"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">isprime</span><span class="params">(<span class="keyword">int</span> n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(n &lt; <span class="number">2</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i * i &lt; n; ++i)</span><br><span class="line">        <span class="keyword">if</span>(n % i == <span class="number">0</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+<p>  那么怎么得到一定范围内的素数呢？<br>  常用的是<strong>素数线性筛法</strong>，时间复杂度为$O(n)$</p>
+  <figure class="highlight cpp"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">bool</span> isprime[<span class="number">10000</span>];</span><br><span class="line"><span class="built_in">memset</span>(isprime, <span class="literal">true</span>, <span class="number">10000</span>);</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">2</span>; i &lt; n; ++i)</span><br><span class="line">    <span class="keyword">if</span>(isprime[i])</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">2</span> * i; j &lt; n; j += i)</span><br><span class="line">                isprime[j] = <span class="literal">false</span>;</span><br></pre></td></tr></table></div></figure>
+<p>  这里统计的是1 ~ 10000(不包括端点)中所有素数，想包括端点把 $&lt;$ 改为 $&lt;=$ 即可</p>
+<p>  还有一个问题是距离最近的两个素数，<strong>怎么找距离最近的两个数？</strong><br>  答案是从中间开始找</p>
+  <figure class="highlight cpp"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a = n / <span class="number">2</span>;</span><br><span class="line"><span class="keyword">for</span>(; a &gt; <span class="number">0</span>; a--)</span><br><span class="line">    <span class="keyword">if</span>(isprime[a] &amp;&amp; isprime[n - a])</span><br><span class="line">        <span class="keyword">break</span>;</span><br></pre></td></tr></table></div></figure>
+<p>  <strong>有时两个数(或者更多)之间存在算术关系，这时不一定要用新的变量去表示，还可以利用互相的算术关系表示</strong></p>
+</li>
+</ul>
+</div><footer class="post-footer"><div class="post-end"><p><span>------ </span><span>本文结束，感谢您的阅读</span><span> ------</span></p></div><div class="post-tags"><span class="post-tags-item"><i class="post-tags-item__i fa fa-tags"></i><a class="post-tags-item__a" href="http://liwei-change.gitee.io/tags/%E5%B0%8F%E6%8A%80%E5%B7%A7/">小技巧</a></span></div><nav class="paginator"><div class="paginator-post"><div class="paginator-post-prev"><a class="paginator-post-prev__a" href="/2020/02/06/ICPC%E5%AF%92%E5%81%87%E8%AE%AD%E7%BB%83/ICPC%E5%AF%92%E5%81%87%E8%AE%AD%E7%BB%83NO.2/%E6%96%B0%E4%B8%9C%E8%A5%BF/"><i class="fa fa-chevron-left"></i><span>ICPC寒假刷题NO. 2    新东西</span></a></div><div class="paginator-post-next"><a class="paginator-post-next__a" href="/2020/02/06/ICPC%E5%AF%92%E5%81%87%E8%AE%AD%E7%BB%83/ICPC%E5%AF%92%E5%81%87%E8%AE%AD%E7%BB%83NO.2/%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1%E7%9A%84%E9%97%AE%E9%A2%98/"><span>ICPC寒假刷题NO. 2    算法设计的问题</span><i class="fa fa-chevron-right"></i></a></div></div></nav></footer></div></div></div><aside class="sidebar" id="sidebar"><div class="sidebar-inner"><div class="sidebar-nav"><span class="sidebar-nav-toc current">文章目录</span><span class="sidebar-nav-ov">站点概览</span></div><section class="sidebar-toc"><div></div></section><!-- ov = overview --><section class="sidebar-ov hide"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="/images/1.jpg" alt="avatar"></div><p class="sidebar-ov-author__p">Keep Going</p></div><div class="sidebar-ov-social"><a class="sidebar-ov-social__item" href="https://github.com/AIUniverselw" target="_blank" rel="noopener" data-popover="Github" data-popover-pos="up"><i class="sidebar-ov-social__item--icon fa fa-github"></i></a></div><div class="sidebar-ov-state"><a class="sidebar-ov-state__a posts" href="/archives/"><div class="sidebar-ov-state__a--count">11</div><div class="sidebar-ov-state__a--name">归档</div></a><a class="sidebar-ov-state__a categories" href="/categories/"><div class="sidebar-ov-state__a--count">5</div><div class="sidebar-ov-state__a--name">分类</div></a><a class="sidebar-ov-state__a tags" href="/tags/"><div class="sidebar-ov-state__a--count">8</div><div class="sidebar-ov-state__a--name">标签</div></a></div></section><div class="sidebar-reading"><div class="sidebar-reading-info"><span>你已阅读了 </span><span class="sidebar-reading-info-num">0</span></div><div class="sidebar-reading-line"></div></div></div></aside><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright &copy; 2020</span><span class="fa fa-paper-plane footer-icon"></span><span>hello world</span></div><div><span>主题 - <a href="https://github.com/liuyib/hexo-theme-stun/" title="stun" target="_blank" rel="noopener">stun</a></span><span> v1.6.0.</span></div><div class="busuanzi"><span class="busuanzi-site-uv"><i class="fa fa-user busuanzi-site-uv__icon"></i><span>访问人数 </span><span id="busuanzi_value_site_uv"></span></span><span class="separator">|</span><span class="busuanzi-site-pv"><i class="fa fa-eye busuanzi-site-pv__icon"></i><span>浏览总量 </span><span id="busuanzi_value_site_pv"></span></span><script src="https://cdn.jsdelivr.net/gh/sukkaw/busuanzi@latest/bsz.pure.mini.js" async></script></div></div></footer><div class="loading-bar" id="loading-bar"><div class="progress"></div></div><div class="back2top" id="back2top"><i class="back2top-icon fa fa-rocket"></i></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script src="https://cdn.jsdelivr.net/npm/ribbon.js@latest/dist/ribbon.min.js" size="120" alpha="0.6" zIndex="-1"></script><script src="https://cdn.jsdelivr.net/gh/theme-next/theme-next-canvas-nest@latest/canvas-nest.min.js" color="0,0,0" opacity="0.6" count="99" zIndex="-1"></script><script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js"></script><script type="text/x-mathjax-config">var mathjaxMhchem = '';
+var mathJaxTex = {
+  equationNumbers: {
+    autoNumber: "AMS"
+  }
+};
+
+if (false) {
+  mathjaxMhchem = 'https://cdn.jsdelivr.net/npm/mathjax-mhchem@3.3.2/mhchem.min.js';
+  MathJax.Ajax.config.path['mhchem'] = mathjaxMhchem;
+
+  mathJaxTex.extensions = [mathjaxMhchem];
+} else {
+  mathJaxTex.extensions = ["AMSmath.js","AMSsymbols.js"];
+}
+
+MathJax.Hub.Config({
+  menuSettings: {
+    zoom: "None"
+  },
+  showMathMenu: false,
+  jax: ["input/TeX","output/CommonHTML"],
+  extensions: ["tex2jax.js"],
+  TeX: mathJaxTex,
+  tex2jax: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']],
+    displayMath: [["\\[", "\\]"]],
+    processEscapes: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+  }
+});
+
+MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+  MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+    if (data.display) {
+      var next = data.script.nextSibling;
+      while (next && next.nodeName.toLowerCase() === '#text') { next = next.nextSibling; }
+      if (next && next.nodeName.toLowerCase() === 'br') { next.parentNode.removeChild(next); }
+    }
+  });
+});
+
+MathJax.Hub.Queue(function() {
+  var all = MathJax.Hub.getAllJax(), i;
+  for (i = 0; i < all.length; i++) {
+    document.getElementById(all[i].inputID + '-Frame').parentNode.className += ' has-jax';
+  }
+});
+</script><script src="https://cdn.jsdelivr.net/npm/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="https://cdn.jsdelivr.net/gh/sukkaw/busuanzi@latest/bsz.pure.mini.js" async></script><script src="/js/utils.js?v=1.6.0"></script><script src="/js/stun-boot.js?v=1.6.0"></script><script src="/js/scroll.js?v=1.6.0"></script><script src="/js/header.js?v=1.6.0"></script><script src="/js/sidebar.js?v=1.6.0"></script></body></html>
